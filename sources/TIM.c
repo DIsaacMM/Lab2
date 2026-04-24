@@ -65,7 +65,6 @@ void tim_initTimer(tim_t t)
     {        
         RCC -> APB2ENR |= (1U << (t+11));       // Enable TIMx clock (bit 16 to 18)
     }
-    tim_init();                                 // Executes timer pointers initilization 
 }
 
 /**
@@ -86,7 +85,6 @@ void tim_setTimerMs(tim_t t, uint32_t time_ms)
         return;
     }
     
-    tim_initTimer(t);                                                   // Enable timer clock
     TIM[t]->CR1 &= ~(1U << 0);                                          // Disable timer (clear CEN bit)
     
     uint32_t psc = (TIMER_CLOCK_HZ / 1000U) - 1U;                       // Prescaler for 1ms resolution
@@ -124,7 +122,6 @@ void tim_setTimerFreq(tim_t t, uint32_t freq_hz)
         return;
     }
     
-    tim_initTimer(t);                                                   // Enable timer clock
     TIM[t]->CR1 &= ~(1U << 0);                                          // Disable timer
     
     uint32_t psc = 0;                                                   // Prescaler

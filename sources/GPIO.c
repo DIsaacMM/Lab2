@@ -10,7 +10,7 @@
  */
 #include "GPIO.h"
 
-GPIO_TypeDef* gpio[size]; 
+GPIO_TypeDef* gpio[GPIOs_SIZE]; 
 
 /**
  * @brief Initializes the GPIO subsystem

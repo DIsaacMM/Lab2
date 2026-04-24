@@ -8,7 +8,7 @@
  * The user may use this module with multiple functions to:
  * Initialize a STM32 GPIO port and manipulate a specific pin 
  * 
- * @author David Mijares
+ * @author David Mijares, Ximena Cedillo, Xavier Clemente
  */
 
 #include <stdint.h>
@@ -21,11 +21,12 @@ typedef enum port
     C, 
     D, 
     E, 
-    H, 
-    size
+    H,
+    GPIOs_SIZE
  }port_t; 
 
-extern GPIO_TypeDef* gpio[size];
+
+extern GPIO_TypeDef* gpio[GPIOs_SIZE];
 
 /**
  * @brief Initializes the GPIO subsystem
