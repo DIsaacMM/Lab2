@@ -27,12 +27,12 @@
  * @return No return value
  */
 
-void timer_init()
+void timer_init(tim_t t)
 {
     tim_init(); 
     
     // Configure timer for the desired delay
-    tim_initTimer(TIM_2); 
+    tim_initTimer(TIM[t]); 
 }
 
 /**
@@ -54,12 +54,12 @@ void timer_init()
  * 
  * @return No return value
  */
-void timer_delay_ms()
+void timer_delay_ms(tim_t t, uint16_t delay_ms)
 {
-    tim_setTimerMs(TIM_2, DELAY_MS); 
+    tim_setTimerMs(TIM[t], delay_ms); 
     
     // Enable timer and wait for it to complete
-    tim_enableTimer(TIM_2);
-    tim_waitTimer(TIM_2);
-    tim_disableTimer(TIM_2);
+    tim_enableTimer(TIM[t]);
+    tim_waitTimer(TIM[t]);
+    tim_disableTimer(TIM[t]);
 }

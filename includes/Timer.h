@@ -18,7 +18,6 @@
 #include "TIM.h"
 #include "GPIO.h"
 
-#define DELAY_MS 1000 // Default delay 1000ms (1 second).
 
 /**
  * @brief Initializes the timer module for delay generation

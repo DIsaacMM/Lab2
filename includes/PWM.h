@@ -20,9 +20,7 @@
 #include "Timer.h"
 
 
-#define PIN 0                   // Pin 0 of the selected GPIO port will output the PWM signal
 #define ALTERNATE_FUNC_TIM2 1   // AF1 configures the GPIO pin to be controlled by TIM2 peripheral
-#define FRECUENCY 1000          // Working Frecuency is 1kHz
 #define PWM_MODE 6              // 6 = PWM mode 1 (active HIGH): output HIGH when CNT < CCRx
 
 /** 

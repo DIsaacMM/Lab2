@@ -29,16 +29,16 @@
  * @return No return value
  */
 
-void pwm_init()
+void pwm_init(port_t p, tim_t t, uint8_t pin)
 {   
     
     gpio_init(); 
-    gpio_initPort(A); 
-    gpio_setAlternateFunction(A,PIN, ALTERNATE_FUNC_TIM2);  // Connect PIN 0 in GPIOA to the TIM2
+    gpio_initPort(gpio[p]); 
+    gpio_setAlternateFunction(gpio[p], pin, ALTERNATE_FUNC_TIM2);  // Connect PIN 0 in GPIOA to the TIM2
     
     //Initialize timer and set frequency
     tim_init(); 
-    tim_initTimer(TIM_2);
+    tim_initTimer(TIM[t]);
 
 }
 
@@ -60,14 +60,14 @@ void pwm_init()
  * @return No return value
  */
 
-void pwm_setSignal()
+void pwm_setSignal(tim_t t, channel_t chann, uint32_t frecuency)
 {
-    tim_setTimerFreq(TIM_2, FRECUENCY);
+    tim_setTimerFreq(TIM[t], frecuency);
 
-    tim_setTimerCompareMode(TIM_2, channel_1, PWM_MODE); // Configure PWM mode for the channel
+    tim_setTimerCompareMode(TIM[t], chann, PWM_MODE); // Configure PWM mode for the channel
 
-    uint16_t compare_value = (TIM[TIM_2]->ARR * 50) / 100; // Obtiene el 50% del ARR
-    tim_setTimerCompareChannelValue(TIM_2, channel_1, compare_value); 
+    uint16_t compare_value = (TIM[t]->ARR * 50) / 100; // Obtiene el 50% del ARR
+    tim_setTimerCompareChannelValue(TIM[t], chann, compare_value); 
 }
 
 /**
@@ -86,10 +86,10 @@ void pwm_setSignal()
  * @return No return value
  */
 
-void pwm_start()
+void pwm_start(tim_t t, channel_t chann)
 {
-    tim_enableTimerCompareChannel(TIM_2, channel_1); 
-    tim_enableTimer(TIM_2); 
+    tim_enableTimerCompareChannel(TIM[t], chann); 
+    tim_enableTimer(TIM[t]); 
 }
 
 /**
@@ -107,8 +107,8 @@ void pwm_start()
  * @return No return value
  */
 
-void pwm_stop()
+void pwm_stop(tim_t t, channel_t chann)
 {
-    tim_disableTimerCompareChannel(TIM_2, channel_1); 
-    tim_disableTimer(TIM_2); 
+    tim_disableTimerCompareChannel(TIM[t], chann); 
+    tim_disableTimer(TIM[t]); 
 }
