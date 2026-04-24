@@ -66,7 +66,7 @@ void pwm_setSignal(tim_t t, channel_t chann, uint32_t frecuency)
 
     tim_setTimerCompareMode(t, chann, PWM_MODE); // Configure PWM mode for the channel
 
-    uint16_t compare_value = (TIM[t]->ARR * 50) / 100; // Obtiene el 50% del ARR
+    uint16_t compare_value = (TIM[t]->ARR * 25) / 100; // Obtiene el 50% del ARR
     tim_setTimerCompareChannelValue(t, chann, compare_value); 
 }
 

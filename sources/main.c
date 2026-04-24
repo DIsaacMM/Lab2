@@ -17,6 +17,7 @@
 #define LED_GPIOx A         // User LED GPIO
 #define LED_OUTPUT_MODE 1 
 #define LED_DELAY_MS 500        // LED Delay 500ms
+#define LED_TIMx TIM_3
 
 #define PWM_PIN 0           // Pin implemented in the main 
 #define PWM_GPIOx A         // PWM's GPIO that will be implemented in the main
@@ -49,14 +50,16 @@ void LED_init()
     gpio_initPort(LED_GPIOx);                               // Turn on LED GPIOx's RCC
     gpio_setPinMode(LED_GPIOx, LED_PIN, LED_OUTPUT_MODE);   // Set LED as output
     gpio_setPin(LED_GPIOx, LED_PIN);                        // Turn on LED
+
+    timer_init(LED_TIMx); 
 }
 
 void blinking_LED()
 {
         gpio_clearPin(LED_GPIOx, LED_PIN);  // Turn off LED
-        timer_delay_ms(LED_DELAY_MS);       // Timer delay 500ms
+        timer_delay_ms(LED_TIMx, LED_DELAY_MS);       // Timer delay 500ms
         gpio_setPin(LED_GPIOx, LED_PIN);    // Turn on LED
-        timer_delay_ms(LED_DELAY_MS);       // Timer delay 500ms    
+        timer_delay_ms(LED_TIMx, LED_DELAY_MS);       // Timer delay 500ms    
 }
 
 void PWM_init()
